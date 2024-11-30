@@ -1,6 +1,10 @@
 local keymap = vim.keymap -- for conciseness
 
 local M = {}
+
+---nvim_wez_navigator
+---@param key 'l' | 'h' | 'j' | 'k'
+---@return nil
 function M.nvim_wez_navigator(key)
 	local map = {
 		l = "Right",
