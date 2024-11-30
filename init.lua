@@ -37,4 +37,6 @@ function M.setup()
 	end, { desc = "Move to Down Window" })
 end
 
+M.setup()
+
 return M
