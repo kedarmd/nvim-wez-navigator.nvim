@@ -16,10 +16,11 @@ You can install `nvim-wez-navigator` using your preferred plugin manager. For ex
 require('lazy').setup({
   'kedarmd/nvim-wez-navigator',
 })
-```sh
+```
 
 Make sure to install [nvim-wez-navigator](https://github.com/kedarmd/nvim-wez-navigator) plugin for wezterm.
 Run following command to install nvim-wez-navigator
+```sh
 git clone https://github.com/kedarmd/nvim-wez-navigator.git ~/.config/wezterm/plugins/nvim-wez-navigator/
 ```
 Add following line `~/.wezterm.lua`
