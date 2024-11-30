@@ -15,7 +15,6 @@ function M.nvim_wez_navigator(key)
 	local command = string.format("wincmd %s", key)
 	local current_win = vim.api.nvim_get_current_win()
 	vim.cmd(command)
-	vim.notify("WezTerm Activated")
 	if vim.api.nvim_get_current_win() == current_win then
 		local current_termial = vim.fn.getenv("TERM_PROGRAM")
 		if current_termial == "WezTerm" then
