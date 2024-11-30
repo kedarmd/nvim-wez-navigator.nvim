@@ -1,4 +1,4 @@
-# nvim-wez-navigator
+# nvim-wez-navigator.nvim
 
 `nvim-wez-navigator` is a Lua-based Neovim plugin designed to seamlessly integrate Neovim with WezTerm, allowing for easy navigation between the Neovim editor and WezTerm panes.
 
