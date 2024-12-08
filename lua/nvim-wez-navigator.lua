@@ -1,44 +1,25 @@
-local keymap = vim.keymap -- for conciseness
+local merge_tables = require("helpers.merger")
+local navigator = require("helpers.navigators")
+local keymap = vim.keymap
 
 local M = {}
 
----nvim_wez_navigator
----@param key 'l' | 'h' | 'j' | 'k'
----@return nil
-function M.nvim_wez_navigator(key)
-	local map = {
-		l = "Right",
-		h = "Left",
-		j = "Down",
-		k = "Up",
-	}
-	local command = string.format("wincmd %s", key)
-	local current_win = vim.api.nvim_get_current_win()
-	vim.cmd(command)
-	if vim.api.nvim_get_current_win() == current_win then
-		local current_termial = vim.fn.getenv("TERM_PROGRAM")
-		if current_termial == "WezTerm" then
-			local wez_command = string.format("wezterm cli activate-pane-direction %s", map[key])
-			vim.fn.system(wez_command)
-		else
-			vim.notify("Not Running in WezTerm")
-		end
-	end
-end
+-- Default keybindings
+local defaults = {
+	move_right = "<C-l>",
+	move_left = "<C-h>",
+	move_up = "<C-k>",
+	move_down = "<C-j>",
+}
 
-function M.setup()
-	keymap.set("n", "<C-l>", function()
-		M.nvim_wez_navigator("l")
-	end, { desc = "Move to Rigth Window" })
-	keymap.set("n", "<C-h>", function()
-		M.nvim_wez_navigator("h")
-	end, { desc = "Mover to Left Window" })
-	keymap.set("n", "<C-k>", function()
-		M.nvim_wez_navigator("k")
-	end, { desc = "Move to Up Window" })
-	keymap.set("n", "<C-j>", function()
-		M.nvim_wez_navigator("j")
-	end, { desc = "Move to Down Window" })
+-- Setup
+-- @param user_opts table<"move_right" | "move_left" | "move_up" | "move_down", string>
+function M.setup(user_opts)
+	local config = merge_tables(defaults, user_opts)
+	keymap.set("n", config.move_right, navigator.move_right, { desc = "Move to Rigth Window" })
+	keymap.set("n", config.move_left, navigator.move_left, { desc = "Mover to Left Window" })
+	keymap.set("n", config.move_up, navigator.move_up, { desc = "Move to Up Window" })
+	keymap.set("n", config.move_down, navigator.move_down, { desc = "Move to Down Window" })
 end
 
 return M
