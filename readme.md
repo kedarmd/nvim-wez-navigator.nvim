@@ -8,16 +8,39 @@
 - Integration with `wezterm`'s Lua configuration for enhanced flexibility.
 - Streamlined workflow for users who rely on both Neovim and WezTerm.
 
+### Default keybindings
+| Key     | Description             |
+|:--------|:------------------------|
+| `<C-l>` | Move to the right pane  |
+| `<C-k>` | Move to the top pane    |
+| `<C-j>` | Move to the bottom pane |
+| `<C-h>` | Move to the left pane   |
+
 ## Installation
 
 You can install `nvim-wez-navigator` using your preferred plugin manager. For example, with [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-require('lazy').setup({
-  'kedarmd/nvim-wez-navigator',
-})
+{
+  "kedarmd/nvim-wez-navigator.nvim",
+  config = function()
+    require("nvim-wez-navigator").setup()
+  end,
+}
 ```
 
+## Usage
+The plugin provides a `setup` function that you can call to configure the plugin. Here's an example of how to use the setup function:
+```lua
+-- Default keybindings
+require("nvim-wez-navigator").setup({
+    move_right = "<C-l>", 
+    move_up = "<C-k>",
+    move_down = "<C-j>",
+    move_left = "<C-h>",
+})
+```
+## Additional Setup for Wezterm Config
 Make sure to install [nvim-wez-navigator](https://github.com/kedarmd/nvim-wez-navigator) plugin for wezterm.
 Run following command to install nvim-wez-navigator
 ```sh
